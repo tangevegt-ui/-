@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with optional monthly budget setting and preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Google Auth UID of the user" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "monthlyBudget": { "type": "number", "description": "User monthly expense budget in THB" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp via serverTimestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Update timestamp via serverTimestamp" }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "An income or expense transaction record with optional receipt photo",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "type": { "type": "string", "enum": ["INCOME", "EXPENSE"], "description": "Transaction type" },
+        "amount": { "type": "number", "description": "Transaction amount in THB" },
+        "category": { "type": "string", "description": "Category name (e.g. อาหาร, เดินทาง, ช้อปปิ้ง, เงินเดือน)" },
+        "note": { "type": "string", "description": "Optional note or merchant details" },
+        "imageBase64": { "type": "string", "description": "Optional compressed receipt/photo base64 representation" },
+        "date": { "type": "string", "format": "date-time", "description": "Transaction date" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp via serverTimestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Update timestamp via serverTimestamp" }
+      },
+      "required": ["userId", "type", "amount", "category", "date", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile configuration"
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User income and expense transactions"
+    }
+  }
+}

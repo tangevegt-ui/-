@@ -1,0 +1,6 @@
+{
+  "name": "รายรับรายจ่าย",
+  "description": "แอปบันทึกและสรุปรายรับรายจ่าย แนบรูปภาพสลิปหรือใบเสร็จ พร้อมกราฟสรุปและหมวดหมู่อย่างสวยงาม",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
